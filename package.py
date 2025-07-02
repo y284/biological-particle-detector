@@ -7,7 +7,7 @@ from mlflow.types.schema import Schema, TensorSpec, ColSpec
 from model_code.mlflow_model import MyMLflowModel
 
 def main():
-    # Create example input matching your model's requirements (3D numpy array)
+    # Create example input matching the model's requirements (3D numpy array)
     input_example = np.random.rand(256, 256, 256).astype(np.float32)  # Z,Y,X format
     
     # Define model signature with proper numpy dtype objects

@@ -133,14 +133,11 @@ class MyMLflowModel(mlflow.pyfunc.PythonModel):
             
             if len(centroids) == 0:
                 continue
-                
-            # Convert to physical coordinates (nm)
-            coords = centroids[:, ::-1] * 10.012444196428572  # ZYX->XYZ and scale
             
             results.append(pd.DataFrame({
-                "x": coords[:, 0],
-                "y": coords[:, 1], 
-                "z": coords[:, 2],
+                "x": centroids[:, 2],
+                "y": centroids[:, 1], 
+                "z": centroids[:, 0],
                 "particle_type": particle_name
             }))
         

@@ -398,11 +398,3 @@ class EnsembleTTADeepFinder(nn.Module):
         output['particle'] /= 7
         
         return output
-
-if __name__ == "__main__":
-    
-
-    model = EnsembleTTADeepFinder().eval().to("cuda")
-    sample = {"volume":torch.rand(1, 96, 96, 96)}
-    with torch.no_grad():
-        print(model(sample)["particle"].shape)
