@@ -1,0 +1,27 @@
+{
+    "apo-ferritin": {
+        "label": 1,
+        "threshold": 0.0575,
+        "blob_threshold": 5.281030030785574
+    },
+    "beta-galactosidase": {
+        "label": 2,
+        "threshold": 0.0475,
+        "blob_threshold": 9.742487135686511
+    },
+    "ribosome": {
+        "label": 3,
+        "threshold": 0.0575,
+        "blob_threshold": 18.24550153337898
+    },
+    "thyroglobulin": {
+        "label": 4,
+        "threshold": 0.0475,
+        "blob_threshold": 15.502033100606022
+    },
+    "virus-like-particle": {
+        "label": 5,
+        "threshold": 0.125,
+        "blob_threshold": 16.196777381374933
+    }
+}
