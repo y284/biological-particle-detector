@@ -89,7 +89,7 @@ class MyMLflowModel(mlflow.pyfunc.PythonModel):
         weight += 0.1  # Reduced weight in borders
         
         with torch.no_grad():
-            with torch.autocast(device_type=self.device.type, enabled=self.device.type == 'cuda'):
+            with torch.amp.autocast(device_type=self.device.type, enabled=self.device.type == 'cuda'):
                 for batch in data_loader:
                     batch["volume"] = batch["volume"].to(self.device)
 
