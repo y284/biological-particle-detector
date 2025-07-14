@@ -185,7 +185,7 @@ class EncoderBlock(nn.Module):
         # Return as dotdict for attribute-style access
         return dotdict(output)
 
-class DeepFinder(nn.Module):
+class BPD(nn.Module):
     """A 3D convolutional neural network for volumetric segmentation tasks.
     
     The model consists of an encoder-decoder architecture with skip connections,
@@ -197,7 +197,7 @@ class DeepFinder(nn.Module):
     """
     
     def __init__(self, channels=[28, 32, 36]):
-        super(DeepFinder, self).__init__()
+        super(BPD, self).__init__()
         
         # Register a buffer for device tracking
         self.register_buffer('D', torch.tensor(0))
@@ -314,7 +314,7 @@ class DeepFinder(nn.Module):
         
         return output
 
-class EnsembleTTADeepFinder(nn.Module):
+class EnsembleTTABPD(nn.Module):
     """An ensemble model with Test-Time Augmentation (TTA) capabilities.
     
     This model combines predictions from multiple models and applies test-time augmentation
@@ -324,8 +324,8 @@ class EnsembleTTADeepFinder(nn.Module):
         models (list): List of trained nn.Module instances to ensemble.
     """
     
-    def __init__(self, models = [DeepFinder() for _ in range (4)]):
-        super(EnsembleTTADeepFinder, self).__init__()
+    def __init__(self, models = [BPD() for _ in range (4)]):
+        super(EnsembleTTABPD, self).__init__()
         # Store the individual models in a ModuleList for proper parameter handling
         self.models = nn.ModuleList(models)
 

@@ -6,7 +6,7 @@
 
 ## Model Overview
 
-**Model Name:** DeepFinder
+**Model Name:** BPD
 
 **Model Version:** *v1*
 
@@ -24,7 +24,7 @@
 
 **Model Developer:** *Youssef Ouertani*
 
-**Model Description: *DeepFinder*** *is a computer vision model designed to localize proteins in 3D cellular images. It is based on a **U-Net architecture** and trained on tomograms provided by the competition host **CZII**.*
+**Model Description: *BPD*** *is a computer vision model designed to localize proteins in 3D cellular images. It is based on a **U-Net architecture** and trained on tomograms provided by the competition host **CZII**.*
 
 ### 
 

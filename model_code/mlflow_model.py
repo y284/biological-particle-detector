@@ -7,7 +7,7 @@ import pandas as pd
 from torch.utils.data import DataLoader
 from pandas import DataFrame
 
-from model_code.pytorch_model import EnsembleTTADeepFinder
+from model_code.pytorch_model import EnsembleTTABPD
 from model_code.patch_dataset import PatchDataset
 
 class MyMLflowModel(mlflow.pyfunc.PythonModel):
@@ -34,7 +34,7 @@ class MyMLflowModel(mlflow.pyfunc.PythonModel):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         # Initialize and load the ensemble model
-        self.model = EnsembleTTADeepFinder().to(self.device)
+        self.model = EnsembleTTABPD().to(self.device)
         self.model.load_state_dict(
             torch.load(context.artifacts["pytorch_model"], 
                      map_location=self.device)
@@ -89,18 +89,20 @@ class MyMLflowModel(mlflow.pyfunc.PythonModel):
         weight += 0.1  # Reduced weight in borders
         
         with torch.no_grad():
-            for batch in data_loader:
-                batch["volume"] = batch["volume"].to(self.device)
-                patch_probs = self.model(batch)["particle"]  # (1,6,128,128,128)
+            with torch.autocast(device_type=self.device.type, enabled=self.device.type == 'cuda'):
+                for batch in data_loader:
+                    batch["volume"] = batch["volume"].to(self.device)
 
-                for i, probs in enumerate(patch_probs):
-                    z, y, x = batch["zyx"][i]
-                    sl = (slice(z, z+patch_size[0]),
-                          slice(y, y+patch_size[1]),
-                          slice(x, x+patch_size[2]))
-                    
-                    counts[sl] += weight
-                    probabilities[:, sl[0], sl[1], sl[2]] += probs * weight
+                    patch_probs = self.model(batch)["particle"]  # (1,6,128,128,128)
+
+                    for i, probs in enumerate(patch_probs):
+                        z, y, x = batch["zyx"][i]
+                        sl = (slice(z, z+patch_size[0]),
+                            slice(y, y+patch_size[1]),
+                            slice(x, x+patch_size[2]))
+                        
+                        counts[sl] += weight
+                        probabilities[:, sl[0], sl[1], sl[2]] += probs * weight
         
         return (probabilities / counts).cpu().numpy()
 
