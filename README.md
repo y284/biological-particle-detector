@@ -11,7 +11,7 @@
 │└── model.pt # Trained PyTorch model 
 ├── package.py # Script to package model into MLflow format
 ├── requirements.txt # Python dependencies 
-└── quickstart.ipynb # Notebook to run the example end-to-end
+└── quickstart.ipynb # Tutorial notebook
 ```
 
 **⚡ Quickstart**
