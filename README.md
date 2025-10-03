@@ -3,6 +3,7 @@
 This repository contains the packaged version of the model that ranked 5th place in the [CZII - CryoET Object Identification](https://www.kaggle.com/competitions/czii-cryo-et-object-identification)
 
 **📂 Project Structure**
+```
 ├── model_code 
 │├── mlflow_model.py # MLflow wrapper for the PyTorch model 
 │├── patch_dataset.py # PyTorch Patch Dataset and DataLoader for Inference 
@@ -13,6 +14,7 @@ This repository contains the packaged version of the model that ranked 5th place
 ├── package.py # Script to package model into MLflow format
 ├── requirements.txt # Python dependencies 
 └── quickstart.ipynb # Notebook to run the example end-to-end
+```
 
 **⚡ Quickstart**
 
