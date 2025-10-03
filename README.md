@@ -1,6 +1,4 @@
-**🏆 MLflow Model Packaging Example (5th Place — CZII CryoET Object Identification)**
-
-This repository contains the packaged version of the model that ranked 5th place in the [CZII - CryoET Object Identification](https://www.kaggle.com/competitions/czii-cryo-et-object-identification)
+**🏆 MLflow Model Packaging (5th Place — [CZII - CryoET Object Identification](https://www.kaggle.com/competitions/czii-cryo-et-object-identification))**
 
 **📂 Project Structure**
 ```
